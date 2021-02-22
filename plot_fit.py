@@ -64,10 +64,6 @@ def Dchisquared(obs,fit,ste):
 
 
 def adjustFigAspect(fig,aspect=1):
-	'''
-	Adjust the subplot parameters so that the figure has the correct
-	aspect ratio.
-	'''
 	xsize,ysize = fig.get_size_inches()
 	minsize = min(xsize,ysize)
 	xlim = .35*minsize/xsize
@@ -93,57 +89,7 @@ def forceAspect(ax,aspect=1):
 	ax.set_aspect(asp)
 
 
-'''
-def get_data(frequ,index):
-	Name = np.load('./numpy_arrays/list_info/names.npy')
-	c_name = np.load('./numpy_arrays/list_info/c_names.npy')
-	data = fits.open('./../'+str(frequ)+'_GHz_fits/'+Name[index]+'_' + str(frequ) +'GHz_diameter.fits')
-	name = Name[index]
-	c_name = c_name[index]
-	dst2 = './paper_plots/'
-	#try:
-	#    os.stat('{name}'.format(name=name))
-	#except:
-	#    os.mkdir('{name}'.format(name=name))
 
-	data_np = np.array(data[1].data)
-
-
-	#get c_ditance, maj_ax and tb 
-	c_distance = []
-	for i in range(len(data_np)):
-		c_distance.append(data_np[i][25])
-	c_distance = np.array(c_distance)
-	maj_ax = []
-	for i in range(len(data_np)):
-		maj_ax.append(data_np[i][3])
-	maj_ax= np.array(maj_ax)
-	comp = []
-	for i in range(len(data_np)):
-		comp.append(data_np[i][14])
-	comp = np.array(comp)
-	tb = []
-	for i in range(len(data_np)):
-		tb.append(data_np[i][11])
-	tb = np.array(tb)
-	dia_plot = np.concatenate((comp,c_distance,maj_ax,tb))
-	dia_plot = np.reshape(dia_plot,(4,-1))
-	### plot parameters l vs. c_dist
-	c_d = []
-	m_a = []
-	t_b = []
-	for i in range(len(dia_plot[0])):
-		if dia_plot[0][i] == 0:
-			c_d.append(dia_plot[1][i])
-			m_a.append(dia_plot[2][i])
-			t_b.append(dia_plot[3][i])
-	c_d = np.array(c_d)
-	m_a = np.array(m_a)
-	t_b = np.array(t_b)
-	dia = np.concatenate((c_d,m_a,t_b))
-	dia = np.reshape(dia,(3,-1))
-	return dia
-'''
 
 def get_data(freq,index):
 	Name = np.load('./numpy_arrays/list_info/names.npy')
